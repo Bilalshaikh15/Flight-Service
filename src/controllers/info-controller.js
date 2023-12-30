@@ -3,10 +3,12 @@ const { StatusCodes } = require('http-status-codes')
 const info = (req, res) => {
     return res.status(StatusCodes.OK).json({
         success: true,
-        message: "API is Live",
+        message: "Api is Alive",
         error: {},
         data: {}
-    })
+    });
 }
 
-module.exports = info
+module.exports = {
+    info
+}
