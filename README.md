@@ -44,6 +44,13 @@ output, we structure the api response in conttollers and send the output.
     ```
         PORT=3000
     ```
+  -> Run Commands
+
+    cd src
+
+    npx sequelize init
+    npx sequelize create
+    npx sequelize migrate
 
 - Inside the `src/config` folder create a file named `config.json` and write the following code:
 ```
