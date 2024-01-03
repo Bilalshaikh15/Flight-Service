@@ -3,9 +3,8 @@ const app = express()
 const { ServerConfig, Logger } = require('./config')
 const apiRoutes = require('./routes')
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 app.use('/api', apiRoutes)
 
