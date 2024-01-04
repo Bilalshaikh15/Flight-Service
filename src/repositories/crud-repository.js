@@ -26,12 +26,17 @@ class CrudRepository {
     }
 
     async update(id, data) {
-        const response = await this.model.update(data, {
+        const response = await this.model.update({
+            capacity: data
+        }, {
             where: {
                 id
             }
         });
-        return response;
+        if (!response[0]) {
+            throw new AppError("Not able to find the resource", StatusCodes.NOT_FOUND)
+        }
+        return response[0];
     }
 
     async destroy(id) {

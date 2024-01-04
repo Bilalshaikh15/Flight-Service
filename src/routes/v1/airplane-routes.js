@@ -12,6 +12,9 @@ router.post('/',
     AirplaneMiddlewares.validateCreateRequest,
     AirplaneController.createAirplane)
 
+router.patch('/:id',
+    AirplaneController.updateAirplane)
+
 router.delete('/:id',
     AirplaneController.destroyAirplane)
 
