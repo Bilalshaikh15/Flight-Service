@@ -6,8 +6,12 @@ const router = express.Router()
 router.get('/',
     AirplaneController.getAirplanes)
 
+router.get('/:id', AirplaneController.getAirplane)
+
 router.post('/',
     AirplaneMiddlewares.validateCreateRequest,
     AirplaneController.createAirplane)
+
+
 
 module.exports = router
