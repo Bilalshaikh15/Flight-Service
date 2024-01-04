@@ -12,6 +12,9 @@ router.post('/',
     AirplaneMiddlewares.validateCreateRequest,
     AirplaneController.createAirplane)
 
+router.delete('/:id',
+    AirplaneController.destroyAirplane)
+
 
 
 module.exports = router
