@@ -26,9 +26,7 @@ class CrudRepository {
     }
 
     async update(id, data) {
-        const response = await this.model.update({
-            capacity: data
-        }, {
+        const response = await this.model.update(data, {
             where: {
                 id
             }

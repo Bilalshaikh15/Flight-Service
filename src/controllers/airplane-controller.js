@@ -69,7 +69,9 @@ async function updateAirplane(req, res) {
             throw new AppError("Please Provide Capacity in req body", StatusCodes.BAD_REQUEST)
         }
 
-        const deletedAirplane = await AirplaneService.updateAirplane(req.params.id, req.body.capacity);
+        const deletedAirplane = await AirplaneService.updateAirplane(req.params.id, {
+            capacity: req.body.capacity
+        });
         SuccessResponse.data = deletedAirplane
         return res.status(StatusCodes.OK)
             .json(SuccessResponse)

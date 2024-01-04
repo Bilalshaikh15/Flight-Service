@@ -25,41 +25,50 @@ async function getCity(id) {
         const city = await cityRepository.get(id)
         return city
     } catch (error) {
-        throw new AppError('Cannot get City information', StatusCodes.INTERNAL_SERVER_ERROR)
+        if (error.statusCode === StatusCodes.NOT_FOUND) {
+            throw new AppError('there is no city with the id you sent', StatusCodes.BAD_REQUEST)
+        }
+        throw new AppError('Cannot get city', StatusCodes.INTERNAL_SERVER_ERROR)
     }
 }
 
-async function getAllCity() {
+async function getCities() {
     try {
-        const cities = cityRepository.getAll()
+        const cities = await cityRepository.getAll()
         return cities
     } catch (error) {
-        throw new AppError("Cannot fetch data of All the cities", StatusCodes.INTERNAL_SERVER_ERROR)
+        throw new AppError("Cannot fetch cities", StatusCodes.INTERNAL_SERVER_ERROR)
     }
 }
 
 async function updateCity(id, data) {
     try {
-        const city = cityRepository.update(id, data)
+        const city = await cityRepository.update(id, data)
         return city
     } catch (error) {
-
+        if (error.statusCode === StatusCodes.NOT_FOUND) {
+            throw new AppError('there is no city with the id you sent', StatusCodes.BAD_REQUEST)
+        }
+        throw new AppError("Cannot Update the city", StatusCodes.INTERNAL_SERVER_ERROR)
     }
 }
 
 async function destroyCity(id) {
     try {
-        const city = cityRepository.destroy(id)
+        const city = await cityRepository.destroy(id)
         return city
     } catch (error) {
-
+        if (error.statusCode === StatusCodes.NOT_FOUND) {
+            throw new AppError('there is no city with the id you sent', StatusCodes.BAD_REQUEST)
+        }
+        throw new AppError("Cannot Delete city", StatusCodes.INTERNAL_SERVER_ERROR)
     }
 }
 
 module.exports = {
     createCity,
     destroyCity,
-    getAllCity,
+    getCities,
     getCity,
     updateCity
 }
