@@ -67,12 +67,14 @@ async function destroyAirport(req, res) {
 
 async function updateAirport(req, res) {
     try {
-        if (!req.body.capacity) {
+        if (!req.body.name) {
             throw new AppError("Please Provide Capacity in req body", StatusCodes.BAD_REQUEST)
         }
 
         const deletedAirplane = await AirportService.updateAirport(req.params.id, {
-            capacity: req.body.capacity
+            name: req.body.name,
+            cityId: req.body.cityId,
+            code: req.body.code
         });
         SuccessResponse.data = deletedAirplane
         return res.status(StatusCodes.OK)
