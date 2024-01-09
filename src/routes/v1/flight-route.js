@@ -7,7 +7,7 @@ router.post('/',
     FlightMiddlewares.validateCreateRequest,
     FlightController.createFlight)
 
-// router.get('/:id', AirportController.getAirport)
+router.get('/', FlightController.getAllFlights)
 
 // router.post('/',
 //     AirportMiddlewares.validateCreateRequest,
