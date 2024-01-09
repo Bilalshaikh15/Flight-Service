@@ -4,7 +4,7 @@ const { ErrorResponse, SuccessResponse } = require('../utils/common');
 
 async function createFlight(req, res) {
     try {
-        const airport =
+        const flight =
             await FlightService.createFlight({
                 flightNumber: req.body.flightNumber,
                 airplaneId: req.body.airplaneId,
@@ -16,7 +16,7 @@ async function createFlight(req, res) {
                 boardingGate: req.body.boardingGate,
                 totalSeats: req.body.totalSeats
             });
-        SuccessResponse.data = airport
+        SuccessResponse.data = flight
         return res.status(StatusCodes.CREATED)
             .json(SuccessResponse);
     } catch (error) {

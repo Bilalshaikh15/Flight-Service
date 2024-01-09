@@ -7,7 +7,6 @@ const { Op } = require('sequelize')
 const flightRepository = new FlightRepository()
 
 async function createFlight(data) {
-    // console.log(new Date(data.departureTime).toLocaleString())
     try {
         const isTimeCorrect = compareDate(data.arrivalTime, data.departureTime)
         if (!isTimeCorrect) {
@@ -55,7 +54,6 @@ async function getAllFlights(query) {
     if (query.tripDate) {
         let tripDate = query.tripDate
         let endTripDate = query.tripDate + " 23:59:59"
-        console.log(tripDate, endTripDate);
         customFilter.departureTime = {
             [Op.between]: [tripDate, endTripDate]
         }
